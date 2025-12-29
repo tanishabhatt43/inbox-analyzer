@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 Inbox Pattern Finder — Offline single-page app
 
 What it does
@@ -125,4 +124,4 @@ By planning the system before coding:
 Academic / learning project  
 Offline prototype  
 Focused on clarity and usability
->>>>>>> 1e8e23e1d15ff48ee0c54d8dbbe78449d9da39e6
+
