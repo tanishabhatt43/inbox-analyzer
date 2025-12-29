@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Inbox Pattern Finder — Offline single-page app
 
 What it does
@@ -26,3 +27,7 @@ If you want me to:
 - convert this into a tiny Electron or desktop app for even easier offline use, or
 - add simple local tests or a minimal CI check,
 say which you'd prefer and I can implement next.
+=======
+# inbox-analyzer
+Spec-driven inbox analysis prototype
+>>>>>>> 9731fa27041347fbd69a256579b9ceb529a476af
