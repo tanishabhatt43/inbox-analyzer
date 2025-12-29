@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Inbox Pattern Finder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Inbox Pattern Finder</h1>
+      <p class="tagline">Quick notes → grouped patterns → simple actions (offline)</p>
+    </header>
+
+    <section class="add">
+      <h2>Add a Problem Note</h2>
+      <form id="noteForm">
+        <input type="hidden" id="editId" />
+        <textarea id="noteText" placeholder="Describe the problem in one short sentence" required rows="2"></textarea>
+        <div class="row">
+          <label>Type <select id="noteType">
+            <option value="">(optional)</option>
+            <option>Promotion/Newsletter</option>
+            <option>Social</option>
+            <option>Work</option>
+            <option>Personal</option>
+            <option>Other</option>
+          </select></label>
+          <label>Date <input id="noteDate" type="datetime-local" /></label>
+        </div>
+        <div class="row actions">
+          <button type="submit" id="saveBtn">Save note</button>
+          <button type="button" id="cancelEdit" style="display:none">Cancel Edit</button>
+          <button type="button" id="analyzeBtn">Analyze patterns</button>
+          <button type="button" id="exportBtn">Export JSON</button>
+          <input id="importFile" type="file" accept="application/json" style="display:none" />
+          <button type="button" id="importBtn">Import JSON</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="notes">
+      <h2>Notes</h2>
+      <ul id="notesList"></ul>
+    </section>
+
+    <section class="patterns" id="patternsSection" style="display:none">
+      <h2>Detected Patterns</h2>
+      <div id="patterns"></div>
+      <button id="closePatterns">Close</button>
+    </section>
+
+    <footer>
+      <small>All data stored locally in your browser. Works offline.</small>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

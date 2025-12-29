@@ -1,0 +1,32 @@
+Speckit Constitution
+
+Purpose
+- Keep the project small, transparent, and useful. Prefer simple, explainable logic and offline-capable behavior that directly helps real users.
+
+Core Rules
+- Small Surface Area: Limit scope to a focused set of user problems. Prefer smaller modules and fewer dependencies so the whole project stays easy to understand and maintain.
+- Explainable Logic: Use algorithms and flows that can be summarized in one paragraph. Require a short explanation for any non-trivial decision (why it exists, how it works, failure modes).
+- Offline-First: The app must work without network access for primary flows. Cache required data locally, queue outbound actions, and make sync optional and recoverable.
+- User Problem Focus: Every feature must map to a clear user problem. If you can’t state the problem and the expected user action in one sentence, don’t build it yet.
+- Practical Actions Over Complex Features: Prefer features that enable concrete user actions (export, search, filter, mark, remind, correct) rather than large, speculative capabilities.
+
+Practical Guidelines
+- Feature Proposal Template: When proposing a change, include: (1) Problem statement (1 line), (2) User action (what the user does, 1 line), (3) Offline behavior (works when offline? how?), (4) One-paragraph explanation of the logic, (5) Minimum acceptance criteria and a simple test case.
+- Keep UX Direct: Minimize steps to complete common tasks. Show immediate, local results; sync or background processing should not block the user.
+- Resource Limits: Avoid heavy runtime or large models. Favor deterministic, small-footprint implementations that run locally.
+- Data Ownership & Privacy: Store user data locally by default. If telemetry is needed, make it opt-in and minimal.
+- Iterate Small: Ship the smallest possible increment that delivers value. Measure with simple user feedback and iterate.
+
+Examples of Practical Actions
+- "Save selected messages as CSV" (action: export) — works offline using local storage, syncs when available.
+- "Mark and set reminder" (action: mark + schedule) — performed locally; notification shown even offline.
+- "Quick search with filters" (action: local indexed search) — fast, explainable ranking, no network required.
+
+Acceptance Checklist (for every PR)
+- Does this solve a clearly-stated user problem? Yes/No
+- Is the user-facing action concise and testable? Yes/No
+- Does the primary flow work offline? Yes/No (if applicable)
+- Is the logic explainable in one paragraph? Yes/No
+- Are resource/ privacy impacts minimal and documented? Yes/No
+
+Keep it simple, keep it useful.

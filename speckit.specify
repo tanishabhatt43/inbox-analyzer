@@ -1,0 +1,49 @@
+Inbox Pattern Finder — Speckit Specification
+
+Goal
+- Help users understand why their inbox feels overwhelming by collecting short problem notes, grouping similar issues, explaining likely causes, and suggesting simple, offline actions to reduce future overload.
+
+User Stories
+- As a user I can quickly write a short note describing an email problem (what happened, optional email type, and when).
+- As a user I can view my past notes and see grouped patterns of similar problems over time.
+- As a user I can read a short explanation of what might be causing each pattern and receive simple, practical suggestions to fix it.
+- As a user I can export/import my data and all data is saved locally so the app works offline.
+
+Data Model (local only)
+- Note: { id, text, type?, timestamp }
+- Notes stored in browser `localStorage` under `inboxNotes` as JSON array.
+
+Analysis & Grouping (explainable)
+- Tokenize and normalize note text (lowercase, remove punctuation, simple stopwords).
+- Represent each note as a token set and compute Jaccard similarity between sets.
+- Cluster notes with a simple greedy threshold (e.g., Jaccard >= 0.4) so clustering is deterministic and easy to explain.
+- For each cluster, compute top tokens to form a short pattern summary.
+
+Cause Inference & Suggestions (rule-based, small)
+- Maintain a small mapping from common keywords to likely causes (e.g., "newsletter" -> promotions, "urgent"/"missing" -> poor filtering, "from boss" -> prioritization).
+- For each cluster, pick the highest-scoring cause(s) based on token matches.
+- Suggest small, actionable steps like: unsubscribe, create a filter/label, set priority inbox rules, batch-check email twice daily, star/mark important senders, enable desktop notifications for specific senders only.
+
+Offline-First Behavior
+- All core flows (add, list, analyze, export/import) are available offline without network access.
+- Sync is not implemented — keep the app local to respect privacy and simplicity.
+
+UI Requirements (minimal)
+- Add note form: short text, optional email type dropdown, optional date/time (defaults to now).
+- Notes list with simple controls (delete, edit minimal if needed).
+- Analyze button that shows grouped patterns: sample notes, explanation, and suggested actions.
+- Export/Import JSON buttons for backup and share.
+
+Acceptance Criteria
+- User can add and list notes while offline.
+- Analysis groups similar notes and shows at least one explanation and 1–3 suggested actions per pattern.
+- All data stays in `localStorage` and can be exported to a JSON file.
+- The analysis algorithm is explainable (one short paragraph). If asked, the app shows how grouping is computed.
+
+Implementation Constraints
+- Keep implementation small (~single-page app, vanilla JS) and dependency-free.
+- Use clear, well-commented JS functions to keep logic explainable.
+- Favor simple deterministic rules rather than ML models.
+
+Next Steps
+- Build a tiny single-page app (HTML/CSS/JS) implementing the above and place it in the repo root for easy opening in a browser.

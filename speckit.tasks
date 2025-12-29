@@ -1,0 +1,41 @@
+Speckit Tasks — Inbox Pattern Finder
+
+1. Create `speckit.tasks` file documenting next work (DONE)
+   - Purpose: Track actionable next steps and priorities.
+   - Acceptance: File exists in repo with concise tasks.
+
+2. Add 'Edit note' feature
+   - Description: Allow users to edit existing notes (text, type, date).
+   - Acceptance: Edit opens inline or modal and saves to `localStorage`.
+
+3. Tune clustering (stopwords, threshold)
+   - Description: Adjust stopword list and Jaccard threshold; test with varied short notes.
+   - Acceptance: Documented threshold and rationale; grouping feels intuitive on sample data.
+
+4. Add unit tests for tokenization & grouping
+   - Description: Small test harness (node or browser) covering `tokensOf()` and `analyzeNotes()`.
+   - Acceptance: Tests for several sample note sets pass.
+
+5. Improve UX: mobile layout & accessibility
+   - Description: Make layout responsive; add basic ARIA labels and keyboard navigation.
+   - Acceptance: Layout usable on narrow screens; controls reachable by keyboard.
+
+6. Add undo for deletions & confirmations
+   - Description: Add brief undo snackbar after delete and confirmation for bulk import overwrite.
+   - Acceptance: User can undo a delete within a short window.
+
+7. Validate Export/Import and add sample dataset
+   - Description: Ensure imported JSON is validated and provide a sample file for testing.
+   - Acceptance: Import handles invalid files gracefully; sample JSON included.
+
+8. Optional: Package as Electron app
+   - Description: Bundle SPA into an Electron shell for native offline desktop use.
+   - Acceptance: Simple Electron build that opens the app and persists `localStorage` per user.
+
+Priority guidance
+- First priorities: tasks 2,3,4 (small UX improvement, better grouping quality, test coverage).
+- Medium: tasks 5,6,7.
+- Optional/longer: task 8.
+
+Notes
+- Keep changes small and explainable. Each PR should include: problem statement, user action, offline behavior, short logic explanation, and a simple acceptance test.

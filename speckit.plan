@@ -1,0 +1,40 @@
+Speckit Plan — Inbox Pattern Finder
+
+Implementation Overview
+- Platform: Single-page web app using plain HTML, CSS, and vanilla JavaScript.
+- Offline storage: Browser `localStorage` for all notes and settings; Export/Import JSON for backup.
+- UI: Simple layout with an add-note form, notes list, and an Analyze view showing grouped patterns and suggestions.
+
+Grouping & Analysis
+- Approach: Lightweight keyword counting and simple token matching — deterministic and explainable.
+- Tokenization: Lowercase, remove punctuation, filter common stopwords, produce token sets per note.
+- Grouping: Count shared keywords across notes; cluster notes that share multiple top tokens (simple threshold).
+- Summary: For each group, show top tokens and 1–2 sample notes.
+
+Cause & Suggestions
+- Rule-based mapping from common keywords to likely causes (e.g., newsletter → promotions, urgent/missed → prioritization problems).
+- For each inferred cause, show 1–3 practical suggestions (unsubscribe, create filter, batch checking, highlight important senders).
+
+UX & Behavior
+- Minimal steps to add a note: text required, optional type, optional date/time (defaults to now).
+- Analyze button runs the grouping algorithm locally and presents grouped patterns with short explanations.
+- All primary flows work offline; no network requests or external dependencies.
+
+Acceptance Criteria
+- Add and list notes while offline.
+- Clusters produced by simple keyword matching and shown with an explanation.
+- Each cluster includes at least one practical suggestion.
+- Data export/import via JSON works.
+
+Implementation Steps
+1. Create UI: `index.html` with form, notes list, analyze view. (Small, single file layout.)
+2. Implement storage helpers: load/save from `localStorage`.
+3. Implement tokenization and simple keyword-count clustering.
+4. Implement cause inference and suggestion rules.
+5. Wire UI: add note, delete note, analyze, export, import.
+6. Add short README describing offline behavior and how grouping works.
+
+Notes
+- Keep logic simple and explainable; avoid ML/large models.
+- Tune a small set of stopwords and a reasonable similarity threshold after testing with short notes.
+- Prioritize practical, actionable suggestions over speculative features.
